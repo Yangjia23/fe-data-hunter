@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="64px" viewBox="0 0 62 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Group 10</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.799999952">
+        <g id="0-1登陆页" transform="translate(-1265.000000, -171.000000)">
+            <g id="Group-10" transform="translate(1293.100635, 198.659317) scale(-1, 1) rotate(-11.000000) translate(-1293.100635, -198.659317) translate(1265.600635, 166.659317)">
+                <ellipse id="Oval-7" stroke="#CFDAE6" stroke-width="0.941176471" cx="43.8135593" cy="32" rx="11.1864407" ry="11.2941176"></ellipse>
+                <g id="Group-12" transform="translate(34.596774, 23.111111)" fill="#BACAD9">
+                    <ellipse id="Oval-7" opacity="0.45" cx="9.18534718" cy="8.88888889" rx="8.47457627" ry="8.55614973"></ellipse>
+                    <path d="M9.18534718,17.4450386 C13.8657264,17.4450386 17.6599235,13.6143199 17.6599235,8.88888889 C17.6599235,4.16345787 13.8657264,0.332739156 9.18534718,0.332739156 L9.18534718,17.4450386 Z" id="Oval-7"></path>
+                </g>
+                <line x1="34.6597385" y1="24.809694" x2="5.71666084" y2="4.76878945" id="Path-2" stroke="#CFDAE6" stroke-width="0.941176471"></line>
+                <ellipse id="Oval" stroke="#CFDAE6" stroke-width="0.941176471" cx="3.26271186" cy="3.29411765" rx="3.26271186" ry="3.29411765"></ellipse>
+                <ellipse id="Oval-Copy" fill="#F7E1AD" cx="2.79661017" cy="61.1764706" rx="2.79661017" ry="2.82352941"></ellipse>
+                <line x1="34.6312443" y1="39.2922712" x2="5.06366663" y2="59.785082" id="Path-10" stroke="#CFDAE6" stroke-width="0.941176471"></line>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -66,13 +66,6 @@ module.exports = {
               }
             },
           },
-          // {
-          //   loader: "px2rem-loader",
-          //   options: {
-          //     remUnit: 75, //一个rem代表75px
-          //     remPrecision: 8, //计算精度保留8位小数
-          //   },
-          // },
         ],
       },
       {
@@ -91,20 +84,25 @@ module.exports = {
               }
             },
           },
-          {
-            loader: "px2rem-loader",
-            options: {
-              remUnit: 75, //一个rem代表75px
-              remPrecision: 8, //计算精度保留8位小数
-            },
-          },
           "less-loader",
         ],
       },
       {
-        test: /\.(jpg|png|gif|svg|jpeg)$/, //处理图片,把图片打包到输出目录中
+        test: /\.(jpg|png|gif|jpeg)$/, //处理图片,把图片打包到输出目录中
         use: ["url-loader"],
       },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: ['@svgr/webpack', 'url-loader'],
+        // use: [
+        //   {
+        //     loader: '@svgr/webpack',
+        //     options: {
+        //       icon: true,
+        //     },
+        //   },
+        // ],
+      }
     ],
   },
   plugins: [

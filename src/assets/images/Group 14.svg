@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="230px" height="164px" viewBox="0 0 230 164" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Group 14</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0-1登陆页" transform="translate(-1438.000000, -535.000000)">
+            <g id="Group-14" transform="translate(1552.779737, 616.647953) scale(-1, 1) rotate(-5.000000) translate(-1552.779737, -616.647953) translate(1442.779737, 528.147953)">
+                <ellipse id="Oval-2" fill="#CFDAE6" opacity="0.25" cx="29.1176471" cy="29.1402439" rx="29.1176471" ry="29.1402439"></ellipse>
+                <ellipse id="Oval-2" fill="#CFDAE6" opacity="0.3" cx="29.1176471" cy="29.1402439" rx="21.5686275" ry="21.5853659"></ellipse>
+                <ellipse id="Oval-2-Copy" stroke="#CFDAE6" opacity="0.4" cx="179.019608" cy="138.146341" rx="23.7254902" ry="23.7439024"></ellipse>
+                <ellipse id="Oval-2" fill="#BACAD9" opacity="0.5" cx="29.1176471" cy="29.1402439" rx="10.7843137" ry="10.7926829"></ellipse>
+                <path d="M29.1176471,39.9329268 L29.1176471,18.347561 C23.1616351,18.347561 18.3333333,23.1796097 18.3333333,29.1402439 C18.3333333,35.1008781 23.1616351,39.9329268 29.1176471,39.9329268 Z" id="Oval-2" fill="#BACAD9"></path>
+                <g id="Group-9" opacity="0.45" transform="translate(172.000000, 131.000000)" fill="#E6A1A6">
+                    <ellipse id="Oval-2-Copy-2" cx="7.01960784" cy="7.14634146" rx="6.47058824" ry="6.47560976"></ellipse>
+                    <path d="M0.549019608,13.6219512 C4.12262681,13.6219512 7.01960784,10.722722 7.01960784,7.14634146 C7.01960784,3.56996095 4.12262681,0.670731707 0.549019608,0.670731707 L0.549019608,13.6219512 Z" id="Oval-2-Copy-2" transform="translate(3.784314, 7.146341) scale(-1, 1) translate(-3.784314, -7.146341) "></path>
+                </g>
+                <ellipse id="Oval-10" fill="#CFDAE6" cx="218.382353" cy="138.685976" rx="1.61764706" ry="1.61890244"></ellipse>
+                <ellipse id="Oval-10-Copy-2" fill="#E0B4B7" opacity="0.35" cx="179.558824" cy="175.381098" rx="1.61764706" ry="1.61890244"></ellipse>
+                <ellipse id="Oval-10-Copy" fill="#E0B4B7" opacity="0.35" cx="180.098039" cy="102.530488" rx="2.15686275" ry="2.15853659"></ellipse>
+                <line x1="28.9985381" y1="29.9671598" x2="171.151018" y2="132.876024" id="Path-11" stroke="#CFDAE6" opacity="0.8"></line>
+            </g>
+        </g>
+    </g>
+</svg>

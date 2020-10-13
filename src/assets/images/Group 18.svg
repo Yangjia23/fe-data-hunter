@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="135px" height="96px" viewBox="0 0 135 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Group 18</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="0-1登陆页" transform="translate(-241.000000, -193.000000)">
+            <g id="Group-18" transform="translate(313.901416, 240.674395) rotate(-7.000000) translate(-313.901416, -240.674395) translate(243.901416, 196.174395)">
+                <ellipse id="Oval-11" fill="#CFDAE6" opacity="0.25" cx="63.5748792" cy="32.468367" rx="21.7830479" ry="21.766008"></ellipse>
+                <ellipse id="Oval-3" fill="#CFDAE6" opacity="0.599999964" cx="5.98746479" cy="13.8668601" rx="5.2173913" ry="5.21330997"></ellipse>
+                <path d="M38.1354514,88.3520215 C43.8984227,88.3520215 48.570234,83.6838647 48.570234,77.9254015 C48.570234,72.1669383 43.8984227,67.4987816 38.1354514,67.4987816 C32.3724801,67.4987816 27.7006688,72.1669383 27.7006688,77.9254015 C27.7006688,83.6838647 32.3724801,88.3520215 38.1354514,88.3520215 Z" id="Oval-3-Copy" fill="#CFDAE6" opacity="0.45"></path>
+                <line x1="64.2775582" y1="33.1704963" x2="119.185836" y2="16.5654915" id="Path-12" stroke="#CFDAE6" stroke-width="1.73913043" stroke-linecap="round" stroke-linejoin="round"></line>
+                <line x1="42.1431708" y1="26.5002681" x2="7.71190162" y2="14.5640702" id="Path-16" stroke="#E0B4B7" stroke-width="0.702678964" opacity="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.405357899873153,2.108036953469981"></line>
+                <line x1="63.9262187" y1="33.521561" x2="43.6721326" y2="69.3250951" id="Path-15" stroke="#BACAD9" stroke-width="0.702678964" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.405357899873153,2.108036953469981"></line>
+                <g id="Group-17" transform="translate(126.850922, 13.543654) rotate(30.000000) translate(-126.850922, -13.543654) translate(117.285705, 4.381889)" fill="#CFDAE6">
+                    <ellipse id="Oval-4" opacity="0.45" cx="9.13482653" cy="9.12768076" rx="9.13482653" ry="9.12768076"></ellipse>
+                    <path d="M18.2696531,18.2553615 C18.2696531,13.2142826 14.1798519,9.12768076 9.13482653,9.12768076 C4.08980114,9.12768076 0,13.2142826 0,18.2553615 L18.2696531,18.2553615 Z" id="Oval-4" transform="translate(9.134827, 13.691521) scale(-1, -1) translate(-9.134827, -13.691521) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
