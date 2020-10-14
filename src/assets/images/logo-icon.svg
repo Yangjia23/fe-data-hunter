@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="13.2258635%" x2="50%" y2="126.263969%" id="linearGradient-1">
+            <stop stop-color="#00ACFF" offset="0%"></stop>
+            <stop stop-color="#2763FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="13.2258635%" x2="50%" y2="126.263969%" id="linearGradient-2">
+            <stop stop-color="#00ACFF" offset="0%"></stop>
+            <stop stop-color="#2763FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-1整体概况_活跃用户" transform="translate(-30.000000, -8.000000)">
+            <g id="左侧">
+                <g id="logo" transform="translate(30.000000, 8.000000)">
+                    <g id="Logo">
+                        <g id="logo_2">
+                            <path d="M18.3264293,7 L21.5,7 L21.5,7 L19.6653571,27.1810715 C19.5717064,28.2112298 18.7079771,29 17.6735707,29 L14.5,29 L14.5,29 L16.3346429,8.81892851 C16.4282936,7.78877019 17.2920229,7 18.3264293,7 Z" id="矩形" fill="url(#linearGradient-1)"></path>
+                            <path d="M27.3264293,7 L30.5,7 L30.5,7 L28.6653571,27.1810715 C28.5717064,28.2112298 27.7079771,29 26.6735707,29 L23.5,29 L23.5,29 L25.3346429,8.81892851 C25.4282936,7.78877019 26.2920229,7 27.3264293,7 Z" id="矩形备份" fill="url(#linearGradient-1)"></path>
+                            <path d="M22.5,14.5 C24.4329966,14.5 26,16.0670034 26,18 L26,21.5 L26,21.5 L22.5,21.5 C20.5670034,21.5 19,19.9329966 19,18 C19,16.0670034 20.5670034,14.5 22.5,14.5 Z" id="矩形" fill="#00E7F6"></path>
+                            <path d="M8.32642928,18 L11.5,18 L11.5,18 L10.6653571,27.1810715 C10.5717064,28.2112298 9.70797713,29 8.67357072,29 L5.5,29 L5.5,29 L6.33464286,19.8189285 C6.42829362,18.7887702 7.29202287,18 8.32642928,18 Z" id="矩形" fill="url(#linearGradient-2)" transform="translate(8.500000, 23.500000) rotate(-360.000000) translate(-8.500000, -23.500000) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

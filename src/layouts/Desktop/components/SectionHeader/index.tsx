@@ -14,11 +14,19 @@ type Props = PropsWithChildren<{
 
 const {Option} = Select
 
+
 function SectionHeader(props: Props) {
+  const logout = async () => {
+    // await props.logout();
+    // props.history.push('/login')
+  }
+
   const menu = (
     <Menu>
       <Menu.Item>
-        <span>
+        <span onClick={async () => {
+
+        }}>
           <LoginOutlined /> 退出登录
         </span>
       </Menu.Item>

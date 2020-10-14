@@ -15,7 +15,7 @@ let initialState: DesktopState = {
   loginState: LOGIN_TYPES.UN_VALIDATE,
   user: null,
   products: [],
-  menus: []
+  menus: [],
 }
 
 export default function(state: DesktopState = initialState, action: AnyAction): DesktopState {

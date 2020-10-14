@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, Switch, Route, Redirect } from 'react-router-dom';
 import actions from '@/store/actions/desktop';
@@ -23,6 +23,7 @@ type Props = PropsWithChildren<
 const { Sider, Header, Content } = Layout;
 
 function Desktop(props: Props) {
+  const [siderCollapsible, setSiderCollapsible] = useState(false)
   // 页面加载后，直接判断是否登录过
   useEffect(() => {
     // props.validate().catch((error: AxiosError) => {
@@ -38,11 +39,13 @@ function Desktop(props: Props) {
           className="desktop-layout-sider"
           width="240"
           collapsible
+          onCollapse={(collapsed) => {setSiderCollapsible(collapsed)}}
         >
           <SectionSider
             menus={props.menus}
             history={props.history}
             getMenus={props.getMenus}
+            siderCollapsed={siderCollapsible}
           ></SectionSider>
         </Sider>
         <Layout>
