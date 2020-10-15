@@ -1,21 +1,14 @@
 import React, { PropsWithChildren } from 'react'
-
 import { connect } from 'react-redux'
-
 import { RouteComponentProps } from 'react-router-dom'
-
 import { Tabs } from 'antd'
-
 import BasicUser from '@/components/BasicUser'
-
 import Charts from '@/components/Chart'
-
 import { getVistorData } from "@/api/user"
+import './index.less'
 
 const { TabPane } = Tabs
-
 interface Params {}
-
 type Props = PropsWithChildren<RouteComponentProps<Params>>
 
 class ActiveUser extends React.Component {
@@ -104,7 +97,7 @@ class ActiveUser extends React.Component {
   render() {
     const { tableColumns, tableData, tableLoading, dayActiveUsers, dimension } = this.state
     return (
-      <div>
+      <>
         <BasicUser
           ref="basicUser"
           title="活跃用户分析"
@@ -115,7 +108,7 @@ class ActiveUser extends React.Component {
             <Tabs defaultActiveKey="active-trend">
               <TabPane tab="活跃趋势" key="active-trend">
                 <div className="active-detail">
-                  <Tabs activeKey={dimension} onChange={this.changeTab.bind(this)} >
+                  <Tabs className="second-tab" activeKey={dimension} onChange={this.changeTab.bind(this)} >
                     <TabPane tab="日活跃" key="1">
                       {
                         dayActiveUsers.length && <Charts chartData={dayActiveUsers}></Charts>
@@ -145,7 +138,7 @@ class ActiveUser extends React.Component {
           }
           callback={this.callback}
         />
-      </div>
+      </>
     )
   }
 }

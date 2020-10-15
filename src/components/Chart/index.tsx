@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const echarts = require('echarts') 
+const echarts = require('echarts')
 
 interface IProps {
   chartData: Array<any>
