@@ -21,3 +21,9 @@ export interface LoginResult{
   success: boolean,
   message?: any
 }
+
+export interface VistorData {
+  startTime: string,
+  endTime: string,
+  idSite: number
+}
