@@ -82,7 +82,7 @@ export default class Charts extends React.Component<IProps> {
   render () {
     return (
       <Fragment>
-        <div id="chartCard" style={{ height: '250px' }}></div>
+        <div id="container" style={{ height: '250px' }}></div>
       </Fragment>
     )
   }
