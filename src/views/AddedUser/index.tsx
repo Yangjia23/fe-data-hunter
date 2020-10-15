@@ -1,21 +1,11 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { RouteComponentProps } from 'react-router-dom'
-
-import { Tabs } from 'antd'
 
 import BasicUser from '@/components/BasicUser'
 
-import Charts from '@/components/Chart'
-
 import { getVistorData } from "@/api/user"
-
-interface Params {}
-type Props = PropsWithChildren<RouteComponentProps<Params>>
-
-const { TabPane } = Tabs
 
 class NewUser extends React.Component {
   
@@ -39,19 +29,28 @@ class NewUser extends React.Component {
     ],
     tableData: [],
     tableLoading: true,
-    dayAddedUsers: [],
-    weekAddedUsers: [],
+    addedData: [],
+    startTime: '',
+    endTime: '',
+    dimension: '1',
   }
 
   componentDidMount() {
+    this.getUserData()
+  }
+
+  getUserData () {
     const data = require('../../mock/getVistorData.js')
     Promise.resolve(data).then(res => {
       const list = res.data.list
+      const addedData: Array<any> = [
+        list.map((el: any) => el.time), 
+        list.map((el: any) => String(Number(el.newRegularCount) + Number(el.newProbationCount)))
+      ]
       this.setState({ 
         tableLoading: false,
         tableData: list.map((el: object, index: number)=> ({ ...el, key: index + 1 })),
-        dayAddedUsers: list.map((el: any) => ({ time: el.time, value: Number(el.newRegularCount) + Number(el.newProbationCount) })),
-        weekAddedUsers:  list.map((el: any) => ({ time: el.time }))
+        addedData,
       })
     })
     // getVistorData({ 
@@ -66,35 +65,36 @@ class NewUser extends React.Component {
     // })
   }
 
+  callback (value: object, getNewData: boolean) {
+    const that = this
+    this.setState({...value}, function () {
+      getNewData && that.getUserData()
+    })
+  }
+  
+  changeWeekTab (activeKey: string) {
+    const that = this
+    this.setState({ dimension: activeKey, activeTrendData: [] }, function () {
+      that.getUserData()
+    })
+  }
+
   render() {
-    const { tableColumns, tableData, dayAddedUsers, weekAddedUsers } = this.state
+    const { tableColumns, tableData, addedData } = this.state
+    const tabsMenu = [
+      { tab: '新增趋势', key: 'active-trend', data: addedData }, 
+    ]
+    const tabPaneMenu = ['日活跃', '周活跃', '月活跃']
+
     return (
       <div>
         <BasicUser 
           title="新增用户分析"
           tableColumns={tableColumns}
           tableData={tableData}
-          children={ 
-            <Tabs defaultActiveKey="active-trend" >
-              <TabPane tab="新增趋势" key="active-trend">
-                <div className="active-detail">
-                  <Tabs defaultActiveKey="day">
-                    <TabPane tab="日活跃" key="day">
-                      {
-                        dayAddedUsers.length && <Charts chartData={dayAddedUsers}></Charts>
-                      }
-                    </TabPane>
-                    <TabPane tab="周活跃" key="week">
-                      {
-                        weekAddedUsers.length && <Charts chartData={weekAddedUsers}></Charts>
-                      }
-                    </TabPane>
-                    <TabPane tab="月活跃" key="month"></TabPane>
-                  </Tabs>
-                </div>
-              </TabPane>
-            </Tabs> 
-          }
+          tabsMenu={tabsMenu}
+          tabPaneMenu={tabPaneMenu}
+          callback={this.callback.bind(this)}
         />
       </div>
     )

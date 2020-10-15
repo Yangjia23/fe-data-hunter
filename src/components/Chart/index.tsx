@@ -7,16 +7,9 @@ interface IProps {
 }
 
 export default class Charts extends React.Component<IProps> {
-
-  
   componentDidMount() {
     const { chartData } = this.props
-
     const myChart = echarts.init(document.getElementById('container'))
-    
-    // var data = [100, 200, 300, 400, 500, 600]
-
-    // var time: Array<any> = ['2020-09-01', '2020-09-02','2020-09-03','2020-09-04','2020-09-05','2020-09-06']
 
     myChart.setOption({
       grid: {
@@ -31,10 +24,11 @@ export default class Charts extends React.Component<IProps> {
           type: 'shadow'
         },
         formatter: (params: Array<any>) => {
+          const { axisValue, data } = params[0]
           return `
             <div>
-              <div>${params[0].axisValue}</div>
-              <div>活跃人数：${params[0].dataIndex}</div>
+              <div>${axisValue}</div>
+              <div>${data > 0 && data < 1 ? '活跃人数占比：' + (data * 100).toFixed(2) + '%' : '活跃人数：' + data}</div>
             </div>
           `
         },
@@ -51,12 +45,11 @@ export default class Charts extends React.Component<IProps> {
         data: chartData[0] || [],
       },
       yAxis: {
-        type: 'value',
-        boundaryGap: false,
-        min: 0,
-        max: function (value: { max: string }) {
-          return value.max
-        }
+        axisLabel: {
+          formatter: function (val: any) {
+            return val > 0 && val < 1 ? val * 100 + '%' : val
+          }
+        },
       },
       dataZoom: [{
           type: 'inside',

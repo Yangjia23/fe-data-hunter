@@ -28,13 +28,11 @@ type Props = PropsWithChildren<
 const { Sider, Header, Content } = Layout;
 
 function Desktop(props: Props) {
-  console.log('props', props)
   const {desktop, profile} = props
   const [siderCollapsible, setSiderCollapsible] = useState(false)
   // 页面加载后，直接判断是否登录过
   useEffect(() => {
     props.validate()
-    console.log(props)
   }, []);
 
   return (

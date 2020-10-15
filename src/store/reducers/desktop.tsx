@@ -9,7 +9,7 @@ export interface DesktopState {
 }
 
 let initialState: DesktopState = {
-  products: [],
+  products: [{name: 'sb', id: '1' }],
   menus: [],
 }
 

@@ -7,6 +7,8 @@ import moment from 'moment';
 import './index.less'
 import reducer from '@/store/reducers'
 
+import Charts from '@/components/Chart'
+
 const { RangePicker } = DatePicker
 
 const { TabPane } = Tabs;
@@ -16,6 +18,8 @@ interface IProps {
   tableColumns: Array<object>,
   tableData: Array<object>,
   tableLoading?: boolean,
+  tabsMenu: Array<object>, 
+  tabPaneMenu: Array<any>,
   callback: any,
 }
 
@@ -26,6 +30,8 @@ export default class BasicUser extends React.Component<IProps> {
     endTime: moment().add(7, 'days'),
     page: 1,
     pageSize: 10,
+    dimension: '1',
+    tabKey: 'active-trend'
   }
 
   rangeChange (value: string) {
@@ -33,7 +39,18 @@ export default class BasicUser extends React.Component<IProps> {
       message.error('请选择一个时间范围')
       return
     }
-    this.props.callback(this.state.startTime, this.state.endTime)
+    const { startTime, endTime} = this.state
+    this.props.callback({ startTime, endTime }, false)
+  }
+
+  changeTab (activeKey: string) {
+    this.props.callback({ dimension: '1' }, false)
+    this.setState({ tabKey: activeKey, dimension: '1' })
+  }
+
+  changeWeekTab (activeKey: string) {
+    this.props.callback({ dimension: activeKey }, true)
+    this.setState({ dimension: activeKey })
   }
 
   tablePageChange (page: number) {
@@ -41,8 +58,8 @@ export default class BasicUser extends React.Component<IProps> {
   }
 
   render() {
-    const { startTime, endTime, page, pageSize } = this.state
-    const { title, tableColumns, tableData, tableLoading } = this.props
+    const { startTime, endTime, page, pageSize, tabKey, dimension } = this.state
+    const { title, tableColumns, tableData, tableLoading, tabsMenu, tabPaneMenu } = this.props
     return (
       <div className="content-container">
         <div className="header">
@@ -58,7 +75,33 @@ export default class BasicUser extends React.Component<IProps> {
         </div>
         <div className="content">
           <Card>
-            { this.props.children }
+            {/* { this.props.children } */}
+            <Tabs activeKey={tabKey} onChange={this.changeTab.bind(this)}>
+              {
+                tabsMenu.map((tabs: any) => {
+                  return (
+                    <TabPane tab={tabs.tab} key={tabs.key}>
+                      <Tabs activeKey={dimension} onChange={this.changeWeekTab.bind(this)} >
+                        {
+                          tabPaneMenu.map((el: any, index) => {
+                            return (
+                              <TabPane tab={el} key={index + 1}>
+                                { tabs.data.length 
+                                  && dimension === String(index + 1)
+                                  && tabKey === tabs.key
+                                  && <Charts chartData={tabs.data}></Charts>  
+                                }
+                              </TabPane>
+                            )
+                            
+                          })
+                        }
+                      </Tabs>
+                    </TabPane>
+                   )
+                })
+              }
+            </Tabs>
           </Card>
           <div className="mt-20">
             <Card>

@@ -1,24 +1,20 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { RouteComponentProps } from 'react-router-dom'
-
-import { Tabs } from 'antd'
-
 import BasicUser from '@/components/BasicUser'
-
-import Charts from '@/components/Chart'
 
 import { getVistorData } from "@/api/user"
 
-const { TabPane } = Tabs
+const mapStateToProps = ({
+  desktop: { products },
+}: any) => ({
+  products,
+});
 
-interface Params {}
+interface IProps extends ReturnType<typeof mapStateToProps>{}
 
-type Props = PropsWithChildren<RouteComponentProps<Params>>
-
-class ActiveUser extends React.Component {
+class ActiveUser extends React.Component<IProps> {
 
   state= {
     tableColumns: [
@@ -34,9 +30,8 @@ class ActiveUser extends React.Component {
       },
       {
         title: '正式用户活跃构成（新用户占比）',
-        dataIndex: 'newRegularCount',
-        render: (newRegularCount: string, record: { activeRegularCount: string })  => `${Number(newRegularCount) / Number(record.activeRegularCount) * 100}%`,
-        key: 'newRegularCount',
+        dataIndex: 'perctActiveRegularCount',
+        key: 'perctActiveRegularCount',
       },
       {
         title: '试用用户组活跃',
@@ -45,39 +40,69 @@ class ActiveUser extends React.Component {
       },
       {
         title: '试用用户活跃构成（新用户占比）',
-        dataIndex: 'newProbationCount',
-        render: (newProbationCount: string, record: { activeProbationCount: string })  => `${Number(newProbationCount) / Number(record.activeProbationCount) * 100}%`,
-        key: 'newProbationCount',
+        dataIndex: 'perctActiveProbationCount',
+        key: 'perctActiveProbationCount',
       }
     ],
     tableData: [],
     tableLoading: true,
-    dayActiveUsers: [],
+    activeTrendData: [],
+    activeFormData: [],
+    startTime: '',
+    endTime: '',
     dimension: '1',
+    tabKey: 'active-trend'
   }
    
   componentDidMount() {
     this.getUserData()
   }
 
-  callback (startTime: string, endTime: string) {
-    this.setState({ startTime, endTime })
+  callback (value: object, getNewData: boolean) {
+    const that = this
+    this.setState({...value}, function () {
+      getNewData && that.getUserData()
+    })
+  }
+
+  formatNumber (value1: string, value2: string): string {
+    const num: any = Number(value1) / Number(value2)
+    return `${num.toFixed(4) * 100}%`
   }
 
   getUserData () {
     const data = require('../../mock/getVistorData.js')
-    console.log('11111', this.state.dimension)
     Promise.resolve(data).then(res => {
       const list = res.data.list
-      const { dimension } = this.state
-      // let userInfo: Array<Array<object>> = {}
-      // switch(dimension) {
-      //   case 1: userInfo['dayActiveUsers'] = list.map((el: any) => ({ time: el.time, value: Number(el.activeRegularCount) + Number(el.activeProbationCount) }))
-      // }
+      const nRC = 'newRegularCount' // 新增正式用户组
+      const nPC = 'newProbationCount' // 新增试用用户组
+      const aRC = 'activeRegularCount' // 活跃正式用户组
+      const aPC = 'activeProbationCount' // 活跃试用用户组
+      const allData = list.map((el: any, index: number) => ({ 
+        ...el, 
+        key: index + 1, 
+        perctActiveRegularCount: this.formatNumber(el[nRC], el[aRC]),
+        perctActiveProbationCount: this.formatNumber(el[nPC], el[aPC])
+      }))
+      const activeFormData = [
+        list.map((el: any) => el.time),
+        list.map((el: any) => {
+          const newTotal = Number(el[nRC]) + Number(el[nPC])
+          const activeTotal = Number(el[aRC]) + Number(el[aPC])
+          const perct: any = newTotal / activeTotal 
+          return perct.toFixed(4)
+        })
+      ]
+
+      const activeTrendData: Array<string> = [
+        list.map((el: any) => el.time), 
+        list.map((el: any) => String(Number(el[aRC]) + Number(el[aPC])))
+      ]
       this.setState({ 
         tableLoading: false,
-        tableData: list.map((el: object, index: number)=> ({ ...el, key: index + 1 })),
-        dayActiveUsers: [list.map((el: any) => el.time), list.map((el: any) => (Number(el.activeRegularCount) + Number(el.activeProbationCount)))]
+        tableData: allData,
+        activeTrendData,
+        activeFormData,
       })
     })
     // const { startTime, endTime, dimension } = this.state
@@ -94,15 +119,13 @@ class ActiveUser extends React.Component {
     // })
   }
 
-  changeTab (activeKey: string) {
-    const that = this
-    this.setState({ dimension: activeKey }, function () {
-      that.getUserData()
-    })
-  }
-
   render() {
-    const { tableColumns, tableData, tableLoading, dayActiveUsers, dimension } = this.state
+    const { tableColumns, tableData, tableLoading, activeTrendData, activeFormData, dimension, tabKey } = this.state
+    const tabsMenu = [
+      { tab: '活跃趋势', key: 'active-trend', data: activeTrendData }, 
+      { tab: '活跃趋势', key: 'active-form', data: activeFormData }
+    ]
+    const tabPaneMenu = ['日活跃', '周活跃', '月活跃']
     return (
       <div>
         <BasicUser
@@ -111,43 +134,13 @@ class ActiveUser extends React.Component {
           tableColumns={tableColumns}
           tableData={tableData}
           tableLoading={tableLoading}
-          children={ 
-            <Tabs defaultActiveKey="active-trend">
-              <TabPane tab="活跃趋势" key="active-trend">
-                <div className="active-detail">
-                  <Tabs activeKey={dimension} onChange={this.changeTab.bind(this)} >
-                    <TabPane tab="日活跃" key="1">
-                      {
-                        dayActiveUsers.length && <Charts chartData={dayActiveUsers}></Charts>
-                      }
-                    </TabPane>
-                    <TabPane tab="周活跃" key="2">
-                    </TabPane>
-                    <TabPane tab="月活跃" key="3"></TabPane>
-                  </Tabs>
-                </div>
-              </TabPane>
-              <TabPane tab="活跃构成" key="active-form">
-                <div className="active-detail">
-                  <Tabs activeKey={dimension} onChange={this.changeTab.bind(this)} >
-                    <TabPane tab="日活跃" key="1">
-                      {
-                        dayActiveUsers.length && <Charts chartData={dayActiveUsers}></Charts>
-                      }
-                    </TabPane>
-                    <TabPane tab="周活跃" key="2">
-                    </TabPane>
-                    <TabPane tab="月活跃" key="3"></TabPane>
-                  </Tabs>
-                </div>
-              </TabPane>
-            </Tabs> 
-          }
-          callback={this.callback}
+          tabsMenu={tabsMenu}
+          tabPaneMenu={tabPaneMenu}
+          callback={this.callback.bind(this)}
         />
       </div>
     )
   }
 }
 
-export default connect()(ActiveUser)
+export default connect(mapStateToProps)(ActiveUser)
