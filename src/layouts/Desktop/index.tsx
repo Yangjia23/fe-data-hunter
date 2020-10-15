@@ -1,20 +1,25 @@
-import React, { PropsWithChildren, useEffect } from "react";
-import { connect } from "react-redux";
-import { RouteComponentProps, Switch, Route, Redirect } from "react-router-dom";
-import actions from "@/store/actions/desktop";
-import { DesktopState } from "@/store/reducers/desktop";
-import { CombinedState } from "@/store/reducers";
-import { AxiosError } from "axios";
+import React, { PropsWithChildren, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, Switch, Route, Redirect } from 'react-router-dom';
+import desktopActions from '@/store/actions/desktop';
+import profileActions from '@/store/actions/profile';
+import { CombinedState } from '@/store/reducers';
+import { AxiosError } from 'axios';
 
-import { Layout } from "antd";
-import "./index.less";
+import { Layout } from 'antd';
+import './index.less';
 
-import SectionHeader from "./components/SectionHeader";
-import SectionSider from "./components/SectionSider";
-import routes from "@/routes";
+import SectionHeader from './components/SectionHeader';
+import SectionSider from './components/SectionSider';
+import routes from '@/routes';
 
 type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof actions;
+type mapDispatchToPropsFunction<T> ={
+  [K in  keyof T]:(...args:any)=>void| {type:string, payload:any}
+}
+
+type DispatchProps = typeof desktopActions & mapDispatchToPropsFunction<typeof profileActions>;
+
 interface Params {}
 type Props = PropsWithChildren<
   RouteComponentProps<Params> & StateProps & CombinedState & DispatchProps
@@ -23,31 +28,41 @@ type Props = PropsWithChildren<
 const { Sider, Header, Content } = Layout;
 
 function Desktop(props: Props) {
+  console.log('props', props)
+  const {desktop, profile} = props
+  const [siderCollapsible, setSiderCollapsible] = useState(false)
   // 页面加载后，直接判断是否登录过
   useEffect(() => {
-    // props.validate().catch((error: AxiosError) => {
-    //   console.error(error.message)
-    // })
-  }, [])
-  
+    props.validate()
+    console.log(props)
+  }, []);
+
   return (
     <>
       <Layout className="desktop-layout">
         <Sider
+          theme="light"
           className="desktop-layout-sider"
           width="240"
           collapsible
+          onCollapse={(collapsed) => {setSiderCollapsible(collapsed)}}
         >
           <SectionSider
-            menus={props.menus}
+            menus={desktop.menus}
             history={props.history}
             getMenus={props.getMenus}
+            siderCollapsed={siderCollapsible}
           ></SectionSider>
         </Sider>
         <Layout>
-          <Header className="desktop-layout-header">
+          <Header
+            style={{ background: '#fff' }}
+            className="desktop-layout-header"
+          >
             <SectionHeader
-              products={props.products}
+              products={desktop.products}
+              history={props.history}
+              logout={props.logout}
               getProducts={props.getProducts}
             ></SectionHeader>
           </Header>
@@ -71,6 +86,6 @@ function Desktop(props: Props) {
     </>
   );
 }
-let mapStateToProps = (state: CombinedState): DesktopState => state.desktop;
+let mapStateToProps = (state: CombinedState): CombinedState => state;
 
-export default connect(mapStateToProps, actions)(Desktop);
+export default connect(mapStateToProps, {...desktopActions, ...profileActions})(Desktop);

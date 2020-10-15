@@ -4,6 +4,7 @@ import {RouteComponentProps} from 'react-router-dom'
 import { Link } from "react-router-dom";
 import Menu from '@/typings/menu'
 import logoUrl from '@/assets/images/logo.svg'
+import logoIconUrl from '@/assets/images/logo-icon.svg'
 import CustomMenu from '@/components/CustomMenu'
 import './index.less'
 
@@ -12,6 +13,7 @@ type Props = PropsWithChildren<{
   history: any,
   menus: Menu[],
   getMenus?: any,
+  siderCollapsed: boolean
 }>;
 
 function SectionSider(props: Props) {
@@ -20,12 +22,11 @@ function SectionSider(props: Props) {
       props.getMenus()
     }
   }, [])
-  console.log('props.menus', props.menus)
   return (
     <>
-      <Link className='logo-link' to={{ pathname: `/` }}>
-        <img src={logoUrl} alt="logo" />
-      </Link>
+      <a className='logo-link' onClick={() => props.history.push('/')}>
+        <img src={props.siderCollapsed ? logoIconUrl : logoUrl} alt="logo" />
+      </a>
       <CustomMenu menus={props.menus} history={props.history}></CustomMenu>
     </>
   )
