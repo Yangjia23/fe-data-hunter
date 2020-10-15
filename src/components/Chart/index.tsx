@@ -12,7 +12,7 @@ export default class Charts extends React.Component<IProps> {
   componentDidMount() {
     const { chartData } = this.props
 
-    const myChart = echarts.init(document.getElementById('container'))
+    const myChart = echarts.init(document.getElementById('chartCard'))
     
     // var data = [100, 200, 300, 400, 500, 600]
 
@@ -89,7 +89,7 @@ export default class Charts extends React.Component<IProps> {
   render () {
     return (
       <Fragment>
-        <div id="container" style={{ height: '250px' }}></div>
+        <div id="chartCard" style={{ height: '250px' }}></div>
       </Fragment>
     )
   }

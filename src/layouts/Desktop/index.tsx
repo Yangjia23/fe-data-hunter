@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+const echarts = require('echarts/lib/echarts');
 import { RouteComponentProps, Switch, Route, Redirect } from 'react-router-dom';
 import desktopActions from '@/store/actions/desktop';
 import profileActions from '@/store/actions/profile';
@@ -36,6 +37,15 @@ function Desktop(props: Props) {
     props.validate()
     console.log(props)
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      echarts.init(document.getElementById('chartCard')).resize()
+    }, 500)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [siderCollapsible])
 
   return (
     <>
