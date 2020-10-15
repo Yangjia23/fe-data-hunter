@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const echarts = require('echarts') 
+const echarts = require('echarts')
 
 interface IProps {
   chartData: Array<any>
@@ -82,7 +82,7 @@ export default class Charts extends React.Component<IProps> {
   render () {
     return (
       <Fragment>
-        <div id="container" style={{ height: '250px' }}></div>
+        <div id="chartCard" style={{ height: '250px' }}></div>
       </Fragment>
     )
   }

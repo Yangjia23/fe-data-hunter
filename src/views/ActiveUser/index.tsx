@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import BasicUser from '@/components/BasicUser'
 
 import { getVistorData } from "@/api/user"
+import './index.less'
 
 const mapStateToProps = ({
   desktop: { products },
@@ -127,7 +128,7 @@ class ActiveUser extends React.Component<IProps> {
     ]
     const tabPaneMenu = ['日活跃', '周活跃', '月活跃']
     return (
-      <div>
+      <>
         <BasicUser
           ref="basicUser"
           title="活跃用户分析"
@@ -138,7 +139,7 @@ class ActiveUser extends React.Component<IProps> {
           tabPaneMenu={tabPaneMenu}
           callback={this.callback.bind(this)}
         />
-      </div>
+      </>
     )
   }
 }
