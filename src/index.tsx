@@ -21,7 +21,7 @@ ReactDOM.render(
         <main className="main-container">
           <Switch>
             // exact 精准匹配
-            <Route path="/" exact render={() => <Redirect to="/desktop"/>}/>
+            <Route path="/" exact render={() => <Redirect to="/situation/activeUser"/>}/>
             <Route path="/login" component={Login} />
             <Route component={Desktop} />
           </Switch>

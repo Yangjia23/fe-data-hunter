@@ -17,7 +17,6 @@ type Props = PropsWithChildren<{
 }>;
 
 function SectionSider(props: Props) {
-  console.log(props.siderCollapsed)
   useEffect(() => {
     if (!props.menus.length) {
       props.getMenus()
@@ -25,9 +24,9 @@ function SectionSider(props: Props) {
   }, [])
   return (
     <>
-      <Link className='logo-link' to={{ pathname: `/` }}>
+      <a className='logo-link' onClick={() => props.history.push('/')}>
         <img src={props.siderCollapsed ? logoIconUrl : logoUrl} alt="logo" />
-      </Link>
+      </a>
       <CustomMenu menus={props.menus} history={props.history}></CustomMenu>
     </>
   )

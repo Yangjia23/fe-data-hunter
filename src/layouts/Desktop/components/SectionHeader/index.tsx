@@ -8,25 +8,27 @@ import './index.less'
 
 type Props = PropsWithChildren<{
   children?: any,
+  history: any,
   products?: Product[],
   getProducts?: any,
+  logout?: any,
 }>;
 
 const {Option} = Select
 
 
 function SectionHeader(props: Props) {
+  console.log('SectionHeader', props);
+  
   const logout = async () => {
-    // await props.logout();
-    // props.history.push('/login')
+    await props.logout();
+    props.history.push('/login')
   }
 
   const menu = (
     <Menu>
       <Menu.Item>
-        <span onClick={async () => {
-
-        }}>
+        <span onClick={logout}>
           <LoginOutlined /> 退出登录
         </span>
       </Menu.Item>

@@ -3,7 +3,7 @@ import loadable from '@/utils/loadable'
 const ActiveUserView = loadable(() => import(/* webpackChunkName: 'situation' */ '@/views/ActiveUser'))
 const AddedUserView = loadable(() => import(/* webpackChunkName: 'situation' */ '@/views/AddedUser'))
 
-const RetentionView = loadable(() => import(/* webpackChunkName: 'situation' */ '@/views/Retention'))
+const RetentionView = loadable(() => import(/* webpackChunkName: 'analysis' */ '@/views/Retention'))
 
 const routes = [
     { path: '/situation/activeUser', exact: false, name: 'ActiveUser', component: ActiveUserView },

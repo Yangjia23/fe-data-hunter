@@ -48,6 +48,7 @@ const config = {
                 libraryName: "antd",
                 libraryDirectory: "es",
                 style: "css",
+                
               }),
             ],
           }),
