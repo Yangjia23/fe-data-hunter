@@ -2,12 +2,26 @@ import * as TYPES from "../action-types";
 import { validate, login } from "../../api/profile";
 import { Dispatch } from "redux";
 import { push } from 'connected-react-router';
-import { RegisterPayload, LoginPayload, RegisterResult, LoginResult } from '@/typings/user';
+import { RegisterPayload, LoginPayload, RegisterResult, LoginResult, ValidateResult } from '@/typings/user';
 import { message } from "antd";
 
 export default {
   validate () {
-    return { type: TYPES.VALIDATE, payload: validate() };
+    // return { type: TYPES.VALIDATE, payload: validate() };
+    return function(dispatch: Dispatch) {
+        (async function(){
+          try { 
+            let result: ValidateResult = await validate<ValidateResult>()
+            if (!result.data.status) {
+              dispatch({ type: TYPES.LOGOUT });
+            } 
+          } catch (error) {
+            message.error(error);
+            console.log('logout >>>');
+            dispatch({ type: TYPES.LOGOUT });
+          }
+        })()
+      } 
   },
   login (data: LoginPayload) {
     return function(dispatch: Dispatch) {

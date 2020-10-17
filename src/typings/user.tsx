@@ -27,3 +27,8 @@ export interface VistorData {
   endTime: string,
   idSite: number
 }
+
+export interface ValidateResult{
+  data: { status: boolean }
+  message?: any
+}

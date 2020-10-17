@@ -15,11 +15,12 @@ import SectionSider from './components/SectionSider';
 import routes from '@/routes';
 
 type StateProps = ReturnType<typeof mapStateToProps>;
-type mapDispatchToPropsFunction<T> ={
-  [K in  keyof T]:(...args:any)=>void| {type:string, payload:any}
-}
+type mapDispatchToPropsFunction<T> = {
+  [K in keyof T]: (...args: any) => void | { type: string; payload: any };
+};
 
-type DispatchProps = typeof desktopActions & mapDispatchToPropsFunction<typeof profileActions>;
+type DispatchProps = typeof desktopActions &
+  mapDispatchToPropsFunction<typeof profileActions>;
 
 interface Params {}
 type Props = PropsWithChildren<
@@ -29,21 +30,24 @@ type Props = PropsWithChildren<
 const { Sider, Header, Content } = Layout;
 
 function Desktop(props: Props) {
-  const {desktop, profile} = props
-  const [siderCollapsible, setSiderCollapsible] = useState(false)
+  const { desktop, profile } = props;
+  console.log('Desktop >>>', props)
+  const [siderCollapsible, setSiderCollapsible] = useState(false);
   // 页面加载后，直接判断是否登录过
   useEffect(() => {
-    props.validate()
+     props.validate();
+    
+    console.log('validate >>>', props.validate())
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      echarts.init(document.getElementById('chartCard')).resize()
-    }, 500)
+      echarts.init(document.getElementById('chartCard')).resize();
+    }, 500);
     return () => {
-      clearTimeout(timer)
-    }
-  }, [siderCollapsible])
+      clearTimeout(timer);
+    };
+  }, [siderCollapsible]);
 
   return (
     <>
@@ -53,7 +57,9 @@ function Desktop(props: Props) {
           className="desktop-layout-sider"
           width="240"
           collapsible
-          onCollapse={(collapsed) => {setSiderCollapsible(collapsed)}}
+          onCollapse={(collapsed) => {
+            setSiderCollapsible(collapsed);
+          }}
         >
           <SectionSider
             menus={desktop.menus}
@@ -96,4 +102,7 @@ function Desktop(props: Props) {
 }
 let mapStateToProps = (state: CombinedState): CombinedState => state;
 
-export default connect(mapStateToProps, {...desktopActions, ...profileActions})(Desktop);
+export default connect(mapStateToProps, {
+  ...desktopActions,
+  ...profileActions,
+})(Desktop);

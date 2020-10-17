@@ -1,8 +1,8 @@
 import axios from './index'
 import {RegisterPayload, LoginPayload} from '../typings/user'
 
-export function validate() {
-  return axios.get("/user/validate");
+export function validate<T>() {
+  return axios.get<T, T>("/user/validate");
 }
 
 export function login<T>(data: LoginPayload) {

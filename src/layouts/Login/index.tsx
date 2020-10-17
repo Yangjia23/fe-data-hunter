@@ -10,11 +10,12 @@ import logoUrl from '@/assets/images/logo.svg';
 import './index.less';
 
 type StateProps = ReturnType<typeof mapStateToProps>;
-type mapDispatchToPropsFunction<T> ={
-  [K in  keyof T]:(...args:any)=>void| {type:string, payload:any}
-}
 
-type DispatchProps=mapDispatchToPropsFunction<typeof actions>
+type mapDispatchToPropsFunction<T> = {
+  [K in keyof T]: (...args: any) => void | { type: string; payload: any };
+};
+
+type DispatchProps = mapDispatchToPropsFunction<typeof actions>;
 interface Params {}
 type Props = PropsWithChildren<
   RouteComponentProps<Params> & StateProps & CombinedState & DispatchProps
@@ -30,7 +31,7 @@ function Login(props: Props) {
     <>
       <div className="login-container">
         <div className="login-box">
-          <img className="login-box__image" src={logoUrl} alt="Logo"/>
+          <img className="login-box__image" src={logoUrl} alt="Logo" />
           <div className="login-box__title">登录</div>
           <Form
             name="normal_login"
